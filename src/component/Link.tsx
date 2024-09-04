@@ -1,5 +1,5 @@
 import { cva, VariantProps } from "class-variance-authority";
-import React, { AnchorHTMLAttributes, ReactNode } from "react";
+import { AnchorHTMLAttributes, ReactNode } from "react";
 import cn from "../util/cn";
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   VariantProps<typeof linkVariants> & {
