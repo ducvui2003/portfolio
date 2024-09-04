@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import "./typography.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  .no-scroll {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+  }
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 0.25rem;
+    background: var(--bg-color-thumb);
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    background: var(--bg-color-track);
+  }
+}
+
+body {
+  --bg-color-thumb: theme("colors.secondary.DEFAULT");
+  --bg-color-track: theme("colors.background.DEFAULT");
+  @apply scrollbar;
+}
+
+.dark body {
+  --bg-color-thumb: theme("backgroundImage.linear");
+  --bg-color-track: theme("colors.background.dark");
+}

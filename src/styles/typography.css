@@ -1,0 +1,11 @@
+@layer components {
+  .content {
+    @apply text-base leading-relaxed tracking-wide;
+  }
+  .heading-lv-2 {
+    @apply text-4xl font-semibold;
+  }
+  .heading-lv-3 {
+    @apply text-xl font-semibold;
+  }
+}
