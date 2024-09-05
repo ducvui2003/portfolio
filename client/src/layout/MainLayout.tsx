@@ -18,11 +18,9 @@ const MainLayout: React.FC = () => {
         description={env.VITE_META_DESCRIPTION || ""}
       />
       <div className="bg-background dark:bg-background-dark">
+        <Header />
         <div className="container mx-auto xs:px-6">
-          <Header />
-          <main className="min-h-screen">
-            <Outlet />
-          </main>
+          <Outlet />
           <Footer />
         </div>
       </div>

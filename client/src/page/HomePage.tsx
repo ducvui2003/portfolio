@@ -3,7 +3,7 @@ import Hero from "../section/Hero";
 import Project from "../section/Project";
 import Skills from "../section/Skill";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <>
       <Hero />
@@ -13,4 +13,4 @@ const Home = () => {
     </>
   );
 };
-export default Home;
+export default HomePage;

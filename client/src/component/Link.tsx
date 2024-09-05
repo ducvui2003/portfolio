@@ -1,9 +1,13 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { AnchorHTMLAttributes, ReactNode } from "react";
 import cn from "../util/cn";
+import { NavLink, NavLinkProps } from "react-router-dom";
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> &
-  VariantProps<typeof linkVariants> & {
+  VariantProps<typeof linkVariants> &
+  NavLinkProps &
+  React.RefAttributes<HTMLAnchorElement> & {
     children?: ReactNode;
+    activeClassName?: string;
   };
 
 const linkVariants = cva("text-base text-primary dark:text-primary-dark", {
@@ -28,11 +32,29 @@ const linkVariants = cva("text-base text-primary dark:text-primary-dark", {
     underline: false,
   },
 });
-const Link = ({ variant, size, className, children, ...props }: LinkProps) => {
+const Link = ({
+  to,
+  variant,
+  underline,
+  activeClassName,
+  size,
+  className,
+  children,
+  ...props
+}: LinkProps) => {
   return (
-    <a className={cn(linkVariants({ variant, size, className }))} {...props}>
+    <NavLink
+      to={to}
+      className={({ isActive }) => {
+        return cn(
+          linkVariants({ variant, size, className }),
+          isActive ? activeClassName || linkVariants({ underline }) : "",
+        );
+      }}
+      {...props}
+    >
       {children}
-    </a>
+    </NavLink>
   );
 };
 
