@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { isCurrentBreakpoint } from "../util/mediaQuery";
 import Chip from "./Chip";
 
