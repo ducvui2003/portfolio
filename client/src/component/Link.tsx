@@ -47,8 +47,9 @@ const Link = ({
       to={to}
       className={({ isActive }) => {
         return cn(
-          linkVariants({ variant, size, className }),
+          linkVariants({ variant, size }),
           isActive ? activeClassName || linkVariants({ underline }) : "",
+          className,
         );
       }}
       {...props}
