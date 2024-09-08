@@ -1,6 +1,5 @@
 import About from "../section/About";
 import Hero from "../section/Hero";
-import Project from "../section/Project";
 import Skills from "../section/Skill";
 
 const HomePage = () => {
@@ -8,7 +7,6 @@ const HomePage = () => {
     <>
       <Hero />
       <About />
-      <Project />
       <Skills />
     </>
   );
