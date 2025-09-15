@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* Screens */
+  --breakpoint-xs: 450px;
+
+  /* Colors */
+  --color-primary: #1f2626;
+  --color-primary-dark: #bdebea;
+
+  --color-secondary: #5222d0;
+  --color-secondary-dark: #2c2c2c;
+
+  --color-background: #e5e5e5;
+  --color-background-dark: #041f31;
+
+  --color-text: #1f2626;
+
+  --color-sub-title: #151717;
+  --color-sub-title-dark: #d7e5ec;
+
+  --color-button: #dbffff;
+  --color-button-dark: #252728;
+
+  --color-card: #f5f2fd;
+  --color-card-dark: #222525;
+
+  --color-backdrop: rgba(0, 0, 0, 0.5);
+
+  /* Backgrounds */
+  --background-image-linear: linear-gradient(
+    to right,
+    #00f5a0 0%,
+    #00d9f5 100%
+  );
+
+  /* Fonts */
+  --font-sans: "Montserrat", sans-serif, system-ui;
+  --font-serif: "Tinos", serif;
+}
+
+/* Custom scrollbar applied to body */
+body {
+  --bg-color-thumb: var(--color-secondary);
+  --bg-color-track: var(--color-background);
+  @apply scrollbar-thin scrollbar;
+}
+
+.dark body {
+  --bg-color-thumb: var(--background-image-linear);
+  --bg-color-track: var(--color-background-dark);
+}
+
+@layer components {
+  .content {
+    @apply text-base leading-relaxed tracking-wide;
+  }
+  .heading-lv-2 {
+    @apply text-4xl font-semibold;
+  }
+  .heading-lv-3 {
+    @apply text-xl font-semibold;
+  }
+}
+
+@layer utilities {
+  .no-scroll {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 0.25rem;
+    background: var(--bg-color-thumb);
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    background: var(--bg-color-track);
+  }
+}

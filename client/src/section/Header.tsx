@@ -11,40 +11,12 @@ const Header = () => {
   const isMobile = isCurrentBreakpoint("xs");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   const updateCoords = () => {
-  //     if (headerRef.current) {
-  //       const rect = headerRef.current.getBoundingClientRect();
-  //       setCoords({ x: rect.left, y: rect.top });
-  //     }
-  //   };
-
-  //   // Initial update
-  //   updateCoords();
-
-  //   // Attach scroll event listener
-  //   window.addEventListener("scroll", updateCoords);
-
-  //   // Cleanup event listener on unmount
-  //   return () => {
-  //     window.removeEventListener("scroll", updateCoords);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   if (coords.x != 0) {
-  //     headerRef.current?.classList.add("backdrop-blur-sm");
-  //   } else {
-  //     headerRef.current?.classList.add("backdrop-blur-none");
-  //   }
-  // }, [coords]);
-
   return (
     <header
       className="d-flex bg-[rgba(15, 23, 42, .75)] sticky inset-x-0 top-0 z-20 backdrop-blur"
       ref={headerRef}
     >
-      <div className="container mx-auto flex items-center justify-between py-7 xs:px-6">
+      <div className="xs:px-6 container mx-auto flex items-center justify-between py-7">
         {isMobile && (
           <CgDetailsMore
             size={28}
@@ -56,7 +28,7 @@ const Header = () => {
           to={"/"}
           underline={true}
           activeClassName="relative before:-left-2 before:h-[10px] before:w-[calc(100%+(8px*2))] before:bg-secondary before:block before:rounded-md"
-          className="font-medium before:absolute before:-bottom-3 before:w-0 before:transition-all before:delay-100 before:ease-in-out before:content-[''] dark:before:bg-linear"
+          className="dark:before:bg-linear font-medium before:absolute before:-bottom-3 before:w-0 before:transition-all before:delay-100 before:ease-in-out before:content-['']"
         >
           Home
         </Link>
@@ -66,12 +38,12 @@ const Header = () => {
               to={"/project"}
               underline={true}
               activeClassName="relative before:-left-2 before:h-[10px] before:w-[calc(100%+(8px*2))] before:bg-secondary before:block before:rounded-md"
-              className="ms-auto font-medium before:absolute before:-bottom-3 before:w-0 before:transition-all before:delay-100 before:ease-in-out before:content-[''] dark:before:bg-linear"
+              className="dark:before:bg-linear ms-auto font-medium before:absolute before:-bottom-3 before:w-0 before:transition-all before:delay-100 before:ease-in-out before:content-['']"
             >
               Project
             </Link>
             <Button
-              className="ml-20 mr-3 font-medium xs:ml-8 xs:mr-0"
+              className="xs:ml-8 xs:mr-0 ml-20 mr-3 font-medium"
               variant="solid"
             >
               Contact
