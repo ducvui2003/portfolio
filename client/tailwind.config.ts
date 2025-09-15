@@ -6,6 +6,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      container: {
+        
+      },
       screens: {
         xs: { max: "450px" },
       },
