@@ -7,7 +7,6 @@ import Link from "../component/Link";
 const ProjectPage = () => {
   const [data, setData] = useState<ProjectType[]>([]);
   useEffect(() => {
-    console.log(data);
     getProject().then((data) => setData(data));
   }, []);
   return (
