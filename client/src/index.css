@@ -110,12 +110,15 @@ body {
   margin-inline: auto;
   @media (width <= --theme(--breakpoint-tl)) {
     max-width: 600px;
+    margin-inline: auto;
   }
   @media (width > --theme(--breakpoint-tl) and (width <= --theme(--breakpoint-lp))) {
     max-width: 1000px;
+    margin-inline: auto;
   }
   @media (width > --theme(--breakpoint-lp)) {
     max-width: 1280px;
+    margin-inline: auto;
   }
 }
 
