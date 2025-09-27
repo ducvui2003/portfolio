@@ -1,17 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+HR+Lijeva:wght@100..400&display=swap");
 @import "tailwindcss";
+@plugin 'tailwind-scrollbar';
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
   /* Screens */
   --breakpoint-xs: 450px;
+
+  --breakpoint-tl: 40rem; /*640px*/
+  --breakpoint-lp: 64rem; /*1024px*/
+  --breakpoint-pc: 80rem; /*1280px*/
 
   /* Colors */
   --color-primary: #1f2626;
   --color-primary-dark: #bdebea;
 
   --color-secondary: #5222d0;
-  --color-secondary-dark: #2c2c2c;
+  --color-secondary-dark: #1f2937;
 
   --color-background: #e5e5e5;
   --color-background-dark: #041f31;
@@ -29,6 +35,8 @@
 
   --color-backdrop: rgba(0, 0, 0, 0.5);
 
+  --color-
+
   /* Backgrounds */
   --background-image-linear: linear-gradient(
     to right,
@@ -37,20 +45,17 @@
   );
 
   /* Fonts */
-  --font-sans: "Montserrat", sans-serif, system-ui;
-  --font-serif: "Tinos", serif;
+  --font-sans: "Playwrite HR Lijeva", cursive, system-ui;
+  --font-serif: "Roboto", serif;
 }
 
 /* Custom scrollbar applied to body */
 body {
-  --bg-color-thumb: var(--color-secondary);
-  --bg-color-track: var(--color-background);
-  @apply scrollbar-thin scrollbar;
+  --gradient-switcher: linear-gradient(40deg, #ff0080, #ff8c00 70%);
 }
 
-.dark body {
-  --bg-color-thumb: var(--background-image-linear);
-  --bg-color-track: var(--color-background-dark);
+[data-theme="dark"] body {
+  --gradient-switcher: linear-gradient(40deg, #8983f7, #a3dafb 70%);
 }
 
 @layer components {
@@ -62,6 +67,15 @@ body {
   }
   .heading-lv-3 {
     @apply text-xl font-semibold;
+  }
+  .absolute-center {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform;
+  }
+  .absolute-center-y {
+    @apply absolute top-1/2 -translate-y-1/2 transform;
+  }
+  .absolute-center-x {
+    @apply absolute left-1/2 -translate-x-1/2 transform;
   }
 }
 
@@ -90,4 +104,26 @@ body {
   .scrollbar::-webkit-scrollbar-track {
     background: var(--bg-color-track);
   }
+}
+
+@utility container {
+  margin-inline: auto;
+  @media (width <= --theme(--breakpoint-tl)) {
+    max-width: 600px;
+  }
+  @media (width > --theme(--breakpoint-tl) and (width <= --theme(--breakpoint-lp))) {
+    max-width: 1000px;
+  }
+  @media (width > --theme(--breakpoint-lp)) {
+    max-width: 1280px;
+  }
+}
+
+@utility border-app {
+  border: 1px;
+  @apply rounded-3xl bg-white transition-all hover:shadow-xl;
+}
+
+@utility switcher {
+  @apply left-1/2;
 }

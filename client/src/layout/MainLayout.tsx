@@ -3,12 +3,13 @@ import Header from "../section/Header";
 import Footer from "../section/Footer";
 import { Outlet } from "react-router-dom";
 import MetaTags from "../component/MetaTags";
+import { BgDot } from "../component/BgDot";
 
 const env = import.meta.env;
 
 const MainLayout: React.FC = () => {
   return (
-    <>
+    <main className="bg-[#f7f2f2]">
       <MetaTags
         author={env.VITE_META_AUTHOR || ""}
         image={env.VITE_META_IMAGE || ""}
@@ -17,14 +18,14 @@ const MainLayout: React.FC = () => {
         url={env.VITE_META_URL || ""}
         description={env.VITE_META_DESCRIPTION || ""}
       />
-      <div className="bg-background dark:bg-background-dark">
+      <BgDot>
         <Header />
-        <div className="container mx-auto xs:px-6">
+
+        <div className="container">
           <Outlet />
-          <Footer />
         </div>
-      </div>
-    </>
+      </BgDot>
+    </main>
   );
 };
 

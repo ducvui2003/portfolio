@@ -1,96 +1,50 @@
 import { useState } from "react";
-import { CiCloudMoon, CiSun } from "react-icons/ci";
-import { FaCheck } from "react-icons/fa";
-import { MdUnfoldMore } from "react-icons/md";
-import Button from "./Button";
+import cn from "../util/cn";
 
 type Theme = "light" | "dark";
 
 const Switch = () => {
-  const currentMode: Theme = document.documentElement.classList.contains("dark")
-    ? "dark"
-    : "light";
+  const currentMode: Theme =
+    document.documentElement.dataset?.theme === "dark" ? "dark" : "light";
   const [mode, setMode] = useState<Theme>(currentMode);
 
   const changeTheme = (theme: Theme) => {
     if (theme === "light") {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.dataset.theme = "light";
       setMode("light");
     } else {
-      document.documentElement.classList.add("dark");
+      document.documentElement.dataset.theme = "dark";
       setMode("dark");
     }
   };
 
-  const [show, setShow] = useState<boolean>(false);
-
   return (
-    <div>
-      <label
-        id="listbox-label"
-        className="block text-sm font-medium leading-6 text-gray-900"
-      ></label>
-      <div className="relative" onClick={() => setShow((state) => !state)}>
-        <Button
-          type="button"
-          className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
-          aria-haspopup="listbox"
-          aria-expanded="true"
-          aria-labelledby="listbox-label"
+    <div className="flex aspect-square flex-col items-center justify-center px-4 py-5">
+      <div className="color relative size-40 rounded-full bg-[image:var(--gradient-switcher)]">
+        <span className="size-30 absolute right-0 origin-top-right scale-0 rounded-full bg-[#26242e] transition-transform duration-500 dark:scale-100"></span>
+      </div>
+      <div className="relative mt-7 flex h-[50px] w-[200px] rounded-3xl bg-gray-200 text-center font-serif text-sm font-bold text-black dark:bg-[#222632] dark:text-[#858b92]">
+        <span
+          className="absolute-center-y z-20 w-[100px] leading-[50px]"
+          onClick={() => changeTheme("light")}
         >
-          <span className="flex items-center">
-            {mode == "light" ? <CiSun size={25} /> : <CiCloudMoon size={25} />}
-            <span className="ml-3 block capitalize">{mode}</span>
-          </span>
-          <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-            <MdUnfoldMore />
-          </span>
-        </Button>
-        {show && (
-          <ul
-            className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-            role="listbox"
-            aria-labelledby="listbox-label"
-            aria-activedescendant="listbox-option-3"
-          >
-            <li
-              className={`relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 ${mode == "dark" && "cursor-pointer"}`}
-              id="listbox-option-0"
-              role="option"
-              onClick={() => changeTheme("light")}
-            >
-              <div className="flex items-center">
-                <CiSun size={25} />
-                <span className="ml-3 block truncate font-normal capitalize">
-                  light
-                </span>
-              </div>
-              {mode == "light" && (
-                <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
-                  <FaCheck />
-                </span>
-              )}
-            </li>
-            <li
-              className={`relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 ${mode == "light" && "cursor-pointer"}`}
-              id="listbox-option-0"
-              role="option"
-              onClick={() => changeTheme("dark")}
-            >
-              <div className="flex items-center">
-                <CiCloudMoon size={25} />
-                <span className="ml-3 block truncate font-normal capitalize">
-                  dark
-                </span>
-              </div>
-              {mode == "dark" && (
-                <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
-                  <FaCheck />
-                </span>
-              )}
-            </li>
-          </ul>
-        )}
+          Light
+        </span>
+        <span
+          className="absolute-center-y right-0 z-20 w-[100px] leading-[50px]"
+          onClick={() => changeTheme("dark")}
+        >
+          Dark
+        </span>
+        <span
+          className={cn(
+            "absolute-center-y shadow-2xs left-0 z-10 h-[50px] w-[100px] rounded-3xl bg-white transition-transform duration-300 dark:bg-[#34323d]",
+            {
+              "translate-x-0": mode === "light",
+              "translate-x-full": mode === "dark",
+            },
+          )}
+        ></span>
       </div>
     </div>
   );
