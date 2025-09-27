@@ -9,7 +9,6 @@ import {
   FaCss3Alt,
   FaJs,
   FaPython,
-  FaDatabase,
 } from "react-icons/fa";
 import {
   SiTypescript,

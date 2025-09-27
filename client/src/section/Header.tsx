@@ -1,15 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import vn from "../assets/vn.svg";
 import Link from "../component/Link";
 import { AUTHOR } from "../util/const";
 import { CiMenuBurger } from "react-icons/ci";
 import cn from "../util/cn";
-import { isCurrentBreakpoint } from "../util/mediaQuery";
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const [activeMenuMobile, setActiveMenuMobile] = useState<boolean>(false);
-  const isPc = isCurrentBreakpoint("pc");
 
   return (
     <header className="sticky inset-x-0 top-0 z-20">

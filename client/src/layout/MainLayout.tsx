@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../section/Header";
-import Footer from "../section/Footer";
 import { Outlet } from "react-router-dom";
 import MetaTags from "../component/MetaTags";
 import { BgDot } from "../component/BgDot";
