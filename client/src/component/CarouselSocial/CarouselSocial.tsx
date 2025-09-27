@@ -1,5 +1,5 @@
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import Link from "../Link";
 import { GoArrowUpRight } from "react-icons/go";
 import cn from "../../util/cn";
