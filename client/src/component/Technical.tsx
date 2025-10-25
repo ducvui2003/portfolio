@@ -1,56 +1,54 @@
 import { ReactNode } from "react";
-import cn from "../util/cn";
-import Link from "./Link";
-import {
-  FaNodeJs,
-  FaJava,
-  FaDocker,
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaPython,
-} from "react-icons/fa";
-import {
-  SiTypescript,
-  SiSpring,
-  SiMysql,
-  SiPostgresql,
-  SiMongodb,
-  SiGnubash,
-} from "react-icons/si";
 import { GoArrowUpRight } from "react-icons/go";
+import { SiGnubash } from "react-icons/si";
+import cn from "../util/cn";
+import {
+  CSS,
+  Docker,
+  HTML,
+  Java,
+  JavaScript,
+  MongoDB,
+  MySQL,
+  NodeJs,
+  PostgreSQL,
+  Python,
+  Spring,
+  TypeScript,
+} from "./Icon";
+import Link from "./Link";
 
 const TECHS = [
   {
-    iconComp: <FaNodeJs className="text-[#339933]" />, // Node.js green
+    iconComp: <NodeJs />, // Node.js green
     href: "https://nodejs.org/en",
   },
   {
-    iconComp: <FaJava className="text-[#007396]" />, // Java blue
+    iconComp: <Java />, // Java blue
     href: "https://www.java.com/",
   },
   {
-    iconComp: <FaDocker className="text-[#2496ED]" />, // Docker blue
+    iconComp: <Docker />, // Docker blue
     href: "https://www.docker.com/",
   },
   {
-    iconComp: <FaHtml5 className="text-[#E34F26]" />, // HTML5 orange
+    iconComp: <HTML />, // HTML5 orange
     href: "https://developer.mozilla.org/docs/Web/HTML",
   },
   {
-    iconComp: <FaCss3Alt className="text-[#1572B6]" />, // CSS3 blue
+    iconComp: <CSS />, // CSS3 blue
     href: "https://developer.mozilla.org/docs/Web/CSS",
   },
   {
-    iconComp: <FaJs className="text-[#F7DF1E]" />, // JS yellow
+    iconComp: <JavaScript />, // JS yellow
     href: "https://developer.mozilla.org/docs/Web/JavaScript",
   },
   {
-    iconComp: <SiTypescript className="text-[#3178C6]" />, // TS blue
+    iconComp: <TypeScript />, // TS blue
     href: "https://www.typescriptlang.org/",
   },
   {
-    iconComp: <FaPython className="text-[#3776AB]" />, // Python blue
+    iconComp: <Python />, // Python blue
     href: "https://www.python.org/",
   },
   {
@@ -58,19 +56,19 @@ const TECHS = [
     href: "https://www.gnu.org/software/bash/",
   },
   {
-    iconComp: <SiSpring className="text-[#6DB33F]" />, // Spring green
+    iconComp: <Spring />, // Spring green
     href: "https://spring.io/",
   },
   {
-    iconComp: <SiMysql className="text-[#4479A1]" />, // MySQL blue
+    iconComp: <MySQL />, // MySQL blue
     href: "https://www.mysql.com/",
   },
   {
-    iconComp: <SiPostgresql className="text-[#336791]" />, // PostgreSQL blue
+    iconComp: <PostgreSQL />, // PostgreSQL blue
     href: "https://www.postgresql.org/",
   },
   {
-    iconComp: <SiMongodb className="text-[#47A248]" />, // MongoDB green
+    iconComp: <MongoDB />, // MongoDB green
     href: "https://www.mongodb.com/",
   },
 ];

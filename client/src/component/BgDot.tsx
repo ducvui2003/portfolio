@@ -7,7 +7,7 @@ type BgDotProps = {
 
 export function BgDot({ children }: BgDotProps) {
   return (
-    <div className="w-full items-center justify-center">
+    <div className="min-h-[100vh] w-full items-center justify-center">
       <div
         className={cn(
           "[background-size:45px_45px]",

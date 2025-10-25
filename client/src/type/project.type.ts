@@ -1,15 +1,15 @@
-interface Project {
-  id: string;
-  title: string;
-  tags: Tag[];
-  description: string;
-  website: string;
-  source: string;
-  thumbnail: string;
-  created_time: Date;
-}
-interface Tag {
+import { ReactNode } from "react";
+
+interface ProjectType {
+  id: number;
   name: string;
-  color: string;
+  description: string;
+  techs: ReactNode[];
+  start: Date;
+  status: "open" | "close";
+  tag?: { name: string; color: string; bgColor: string }[];
+  githubHref?: string;
+  thumbnail?: string;
 }
-export type { Project as Project, Tag as Tag };
+
+export type { ProjectType };

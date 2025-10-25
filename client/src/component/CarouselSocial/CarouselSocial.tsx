@@ -8,7 +8,7 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 type SocialType = "linkedin" | "gitlab" | "facebook";
 
-type CarouselSocialProps = Partial<Record<SocialType, string>> & {};
+type CarouselSocialProps = Partial<Record<SocialType, string>>;
 
 const CarouselSocial = ({
   facebook,

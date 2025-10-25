@@ -1,44 +1,58 @@
-import { useEffect, useState } from "react";
-import { getProject } from "../service/database";
-import { Project as ProjectType } from "../type/project.type";
-import Card from "../component/Card";
-import Link from "../component/Link";
+import {
+  GoogleCloud,
+  Java,
+  Linux,
+  MySQL,
+  NestJs,
+  NextJs,
+  PostgreSQL,
+  Redis,
+  Spring,
+  TypeScript,
+} from "../component/Icon";
+import ProjectCard from "../component/ProjectCard";
+import { ProjectType } from "../type/project.type";
+
+const PROJECTS: ProjectType[] = [
+  {
+    id: 1,
+    name: "Website Sell Clothes",
+    description:
+      "Online clothing sales website for Web Programming course at university",
+    start: new Date(10, 10, 2023),
+    status: "close",
+    techs: [<Spring />, <Java />, <MySQL />],
+    githubHref: "https://github.com/ducvui2003/spring-mvc-sell-clothes",
+    thumbnail: "/project_web_sell_thumb.png",
+  },
+  {
+    id: 2,
+    name: "Website Sell Clothes",
+    description:
+      "Online clothing sales website for Web Programming course at university",
+    start: new Date(10, 10, 2023),
+    status: "close",
+    techs: [
+      <TypeScript />,
+      <NextJs />,
+      <NestJs />,
+      <Redis />,
+      <PostgreSQL />,
+      <Linux />,
+      <GoogleCloud />,
+    ],
+    githubHref: "https://github.com/ducvui2003/ecommerce",
+    thumbnail:
+      "https://github.com/ducvui2003/ecommerce/raw/main/web/public/images/logo-transparent.png",
+  },
+];
 
 const ProjectPage = () => {
-  const [data, setData] = useState<ProjectType[]>([]);
-  useEffect(() => {
-    getProject().then((data) => setData(data));
-  }, []);
   return (
-    <section className="xs:mt-24 mt-36">
-      <h2 className="heading-lv-2 dark:text-primary-dark">Project</h2>
-      <div className="xs:flex-col mt-10 flex gap-6">
-        {data?.map((item, index) => (
-          <Card
-            key={index}
-            project={{
-              name: item.title,
-              tags: item.tags?.map((tag) => ({
-                text: tag.name,
-                color: tag.color,
-              })),
-              description: item.description,
-              thumbnail: item.thumbnail,
-              url: item.website,
-              source: item.source,
-            }}
-          />
-        ))}
-      </div>
-      <div className="mt-20 flex items-center justify-center">
-        <Link
-          to={"/project"}
-          className="bg-secondary text-primary-dark dark:bg-linear dark:text-primary xs:mt-4 rounded-2xl px-20 py-4 text-base uppercase"
-          variant="solid"
-        >
-          See all products
-        </Link>
-      </div>
+    <section className="pc:grid-cols-2 grid gap-4 px-4 pt-4 font-serif">
+      {PROJECTS.map((item) => (
+        <ProjectCard key={item.id} {...item} />
+      ))}
     </section>
   );
 };

@@ -4,6 +4,16 @@ import Link from "../component/Link";
 import { AUTHOR } from "../util/const";
 import { CiMenuBurger } from "react-icons/ci";
 import cn from "../util/cn";
+import { useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+
+const menuItems = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Tools", path: "/tool" },
+  { name: "Projects", path: "/project" },
+  { name: "Blogs", path: "/blog" },
+];
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -20,11 +30,9 @@ const Header = () => {
         </h1>
 
         <nav className="pc:flex hidden items-center gap-2 rounded-3xl border-[1px] border-gray-400 p-1">
-          <LinkItem title="Home" href="/" />
-          <LinkItem title="About" href="/about" />
-          <LinkItem title="Tools" href="/tool" />
-          <LinkItem title="Projects" href="/project" />
-          <LinkItem title="Blogs" href="/blog" />
+          {menuItems.map((item) => {
+            return <LinkItem title={item.name} href={item.path} />;
+          })}
         </nav>
 
         <div className="pc:ml-0 ml-auto flex items-center gap-2">
@@ -41,63 +49,67 @@ const Header = () => {
           onClick={() => setActiveMenuMobile((state) => !state)}
           className="pc:hidden ml-5 rounded-md border-[1px] border-gray-400 bg-white p-1 text-3xl hover:cursor-pointer hover:opacity-50"
         />
-        <div
-          className={cn(
-            "absolute left-4 right-4 top-full hidden flex-col rounded-3xl bg-white shadow-lg",
-            activeMenuMobile ? "flex" : "hidden",
+        <AnimatePresence>
+          {activeMenuMobile && (
+            <motion.nav
+              key="mobileMenu"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="absolute left-0 top-full z-50 flex w-full flex-col items-center gap-6 px-4 py-6 md:hidden"
+            >
+              <div className="w-full rounded-3xl bg-white shadow-md">
+                {menuItems.map((item) => {
+                  return (
+                    <LinkItemInline
+                      title={item.name}
+                      href={item.path}
+                      className="border-gray-300 bg-transparent py-2 text-center"
+                    />
+                  );
+                })}
+              </div>
+            </motion.nav>
           )}
-        >
-          <LinkItemInline
-            className="border-gray-300 bg-transparent py-2 text-center"
-            title="Home"
-            href="/"
-          />
-          <LinkItemInline
-            className="border-gray-300 bg-transparent py-2 text-center"
-            title="About"
-            href="/about"
-          />
-          <LinkItemInline
-            className="border-gray-300 bg-transparent py-2 text-center"
-            title="Tools"
-            href="/tool"
-          />
-          <LinkItemInline
-            className="border-gray-300 bg-transparent py-2 text-center"
-            title="Projects"
-            href="/project"
-          />
-          <LinkItemInline
-            className="border-gray-300 bg-transparent py-2 text-center"
-            title="Blogs"
-            href="/blog"
-          />
-        </div>
+        </AnimatePresence>
       </div>
     </header>
   );
 };
 
-const LinkItem = ({
-  title,
-  href,
-  className,
-}: {
+type LinkItemProps = {
   title: string;
   href: string;
   className?: string;
-}) => {
+};
+
+const LinkItem = ({ title, href, className }: LinkItemProps) => {
+  const location = useLocation();
+  const isActive = location.pathname === href;
+
   return (
-    <Link
-      to={href}
-      activeClassName="border-[1px] border-inherit rounded-3xl"
-      className={cn(
-        "min-w-[100px] bg-gradient-to-r from-rose-500 to-blue-600 bg-clip-text px-4 py-1 text-center text-xl text-transparent",
-        className,
+    <div className="relative">
+      <Link
+        to={href}
+        className={cn(
+          "relative min-w-[100px] px-4 py-1 text-center text-xl font-medium",
+          "bg-gradient-to-r from-rose-500 to-blue-600 bg-clip-text text-transparent",
+          "transition-opacity hover:opacity-80",
+          className,
+        )}
+      >
+        {title}
+      </Link>
+
+      {isActive && (
+        <motion.div
+          layoutId="activeIndicator"
+          className="absolute inset-0 rounded-3xl border border-gray-400 px-4 py-1"
+          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+        />
       )}
-    >
-      {title}
-    </Link>
+    </div>
   );
 };
 
@@ -110,17 +122,23 @@ const LinkItemInline = ({
   href: string;
   className?: string;
 }) => {
+  const location = useLocation();
+  const isActive = location.pathname === href;
   return (
-    <Link
-      to={href}
-      activeClassName="border-[1px] border-inherit rounded-3xl"
-      className={cn("min-w-[100px]", className)}
-    >
-      <span className="bg-gradient-to-r from-rose-500 to-blue-600 bg-clip-text px-4 py-1 text-center text-xl text-transparent">
-        {" "}
-        {title}
-      </span>
-    </Link>
+    <div className="relative">
+      <Link to={href} className={cn("inline-block w-full", className)}>
+        <span className="bg-gradient-to-r from-rose-500 to-blue-600 bg-clip-text px-4 py-1 text-center text-xl text-transparent">
+          {title}
+        </span>
+        {isActive && (
+          <motion.div
+            layoutId="activeIndicator"
+            className="absolute inset-0 rounded-3xl border border-gray-400 px-4 py-1"
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+          />
+        )}
+      </Link>
+    </div>
   );
 };
 export default Header;

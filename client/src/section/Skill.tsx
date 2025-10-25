@@ -2,8 +2,6 @@ import skills from "../assets/data/skill";
 import Skill from "../component/Skill";
 
 const Skills = () => {
-  // const COLUMN = 5;
-
   return (
     <div className="xs:mt-24 mt-36">
       <h2 className="heading-lv-2 text-sub-title dark:text-primary-dark">

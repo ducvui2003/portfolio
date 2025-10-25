@@ -36,7 +36,7 @@ const HomePage = () => {
             className="block size-full rounded-xl shadow-2xl"
             src={avatar}
             alt=""
-          />{" "}
+          />
           <span className="absolute -right-7 -top-2 translate-x-full select-none text-nowrap rounded-3xl bg-orange-500 px-4 py-2 font-serif font-semibold tracking-wide text-white">
             {getGreeting()}
 
